@@ -4,13 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hello world</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mileage Tracker</title>
 </head>
 <body>
-    <main class ="container">
-        hello world
+    
+    <nav>
+        <div class="nav-wrapper blue">
+          <a href="{{url_for('home')}}" class="brand-logo 1rem-left">Mileage Tracker</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+          <ul class="right hide-on-med-and-down">
+            
+            <li><a href="">Select Vehicle</a></li>
+            <li><a href="">Admin Console</a></li>
+          </ul>
+        </div>
+      </nav>
+    
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Select Vehicle</a></li>
+        <li><a href="">Admin Console</a></li>
+      </ul>
+      
+    <main class="container">
+        
         {% block content %}
+
         {% endblock %}
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
+
+
 </html>

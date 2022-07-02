@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2 class="blue-text text-lighten-3 center">Select Vehicle</h2> 
+<div class="collection">
+
+    this is a test
+{% for vehicle in vehicles %}
+    fsdfds
+    <a href="url_for{'add_mileage', vehicle_id=vehicle.id}" class="collection-item">{{vehicle.vehicle_reg}}</a>
+{% endfor %}
+</div>
+{% endblock %}

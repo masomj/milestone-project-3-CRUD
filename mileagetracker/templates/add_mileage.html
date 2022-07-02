@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2 class="blue-text text-lighten-3">Add Mileage</h2> 
+
+<div class="card-panel row grey lighten-5">
+
+    <!-- start time -->
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="start_time" name="start_time" type="time" class="validate" required value="">
+            <label for="start_name">Start Time: </label>
+        </div>
+    </div>
+
+     <!-- start mileage -->
+     <div class="row">
+        <div class="input-field col s12">
+            <input id="start_mileage" name="start_mileage" type="text" class="validate" required value="">
+            <label for="start_name">Start Mileage: </label>
+        </div>
+    </div>
+
+     <!-- start destination  -->
+     <div class="row">
+        <div class="input-field col s12">
+            <input id="start_time" name="start_destination" type="text" class="validate" required value="">
+            <label for="start_name">Start Location: </label>
+        </div>
+    </div>
+
+     <!-- end destination -->
+     <div class="row">
+        <div class="input-field col s12">
+            <input id="start_time" name="end_destination" type="text" class="validate" required value="">
+            <label for="start_name">End Destination: </label>
+        </div>
+    </div>
+
+     <!-- end time -->
+     <div class="row">
+        <div class="input-field col s12">
+            <input id="start_time" name="end_time" type="time" class="validate" required value="">
+            <label for="start_name">End Time: </label>
+        </div>
+    </div>
+
+     <!-- end mileage -->
+     <div class="row">
+        <div class="input-field col s12">
+            <input id="start_time" name="end_mileage" type="text" class="validate" required value="">
+            <label for="start_name">End Mileage: </label>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
