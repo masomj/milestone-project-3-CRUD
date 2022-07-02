@@ -22,4 +22,5 @@ class Mileage(db.Model):
     end_time= db.Column(db.Time, nullable=False)
     driver= db.Column(db.String, nullable=False)
     vehicle_id= db.Column(db.Integer, db.ForeignKey("vehicles.id", ondelete="CASCADE"), nullable=False)
+    date=db.Column(db.Date,nullable=False)
 

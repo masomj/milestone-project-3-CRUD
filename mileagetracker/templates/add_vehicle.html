@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2 class="blue-text text-lighten-3 center">Select Vehicle</h2> 
+<div class="collection">
+
+    this is a test
+<form action="{{url_for('add_vehicle')}}" method="POST">
+
+    <div class="row">
+        <div class="input-field col s12">
+            <input type="text" id="vehicle_reg" name="vehicle_reg" class="validate" required> 
+        <label for="vehicle_reg">Vehicle Registration number</label>
+        </div>
+    </div>
+    <div class="col s12">
+        <button type="submit" class="btn-big green"></button>
+    </div>
+    
+</form>
+</div>
+{% endblock %}
