@@ -25,9 +25,16 @@ def add_mileage(vehicle_id):
             driver = "mason")
         db.session.add(mileage)
         db.session.commit()
-        return redirect(url_for("view_vehicle_details"))
+        return redirect(url_for("home"))
     return render_template("add_mileage.html",vehicle=vehicle)
 
+@app.route("/delete_mileage_record/<int:mileage_id>")
+def delete_mileage_record(mileage_id):
+    record=Mileage.query.get_or_404(mileage_id)
+    related_vehicle=record.vehicle_id
+    db.session.delete(record)
+    db.session.commit()
+    return redirect(url_for("view_vehicle_details",vehicle_id=related_vehicle))
 
 @app.route("/view_vehicle_details/<int:vehicle_id>")
 def view_vehicle_details(vehicle_id):
