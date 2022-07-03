@@ -7,7 +7,7 @@ from mileagetracker import db
 class Vehicles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     vehicle_reg = db.Column(db.String(7), unique=True, nullable=False)
-    mileage = db.relationship('Mileage',backref="vehicles")
+    mileage = db.relationship('Mileage',backref="vehicles", cascade="all, delete", lazy=True)
     
    
 
@@ -22,5 +22,5 @@ class Mileage(db.Model):
     end_time= db.Column(db.Time, nullable=False)
     driver= db.Column(db.String, nullable=False)
     vehicle_id= db.Column(db.Integer, db.ForeignKey("vehicles.id", ondelete="CASCADE"), nullable=False)
-    date=db.Column(db.Date,nullable=False)
+    #date=db.Column(db.Date,nullable=False)
 

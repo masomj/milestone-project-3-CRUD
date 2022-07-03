@@ -34,5 +34,45 @@ def view_vehicle_details(vehicle_id):
     selected_vehicle = Vehicles.query.get_or_404(vehicle_id)
     mileage_records = list(Mileage.query.filter_by(vehicle_id = vehicle_id).all())
     return render_template("view_vehicle_details.html", mileage=mileage_records, vehicle=selected_vehicle)
+
+
+@app.route("/admin_console")   
+def admin_console():
+    return render_template("admin_console.html")
+
+
+@app.route("/add_vehicle", methods=["POST","GET"])
+def add_vehicle():
+    if request.method=="POST":
+        new_vehicle=Vehicles(vehicle_reg=request.form.get("vehicle_reg"))
+        db.session.add(new_vehicle)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("edit_vehicle.html")
+
+
+@app.route("/view_vehicle_details_admin")
+def view_vehicle_details_admin():
+    vehicles = list(Vehicles.query.order_by(Vehicles.vehicle_reg).all())
+    return render_template("view_vehicle_details_admin.html",vehicles=vehicles)
+
+
+@app.route("/edit_vehicle/<int:vehicle_id>", methods=["POST","GET"])
+def edit_vehicle(vehicle_id):
+    vehicle = Vehicles.query.get_or_404(vehicle_id)
+    if request.method=="POST":
+        selected_vehicle.vehicle_reg = request.form.get("vehicle_reg")
+    return render_template("edit_vehicle.html",vehicle=vehicle)
+
+@app.route("/delete_vehicle/<int:vehicle_id>")
+def delete_vehicle(vehicle_id):
+    vehicle = Vehicles.query.get_or_404(vehicle_id)
+    db.session.delete(vehicle)
+    db.session.commit()
+    return redirect(url_for('admin_console'))
+    
+    
+
+    
     
     

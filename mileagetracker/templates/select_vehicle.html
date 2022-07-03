@@ -4,8 +4,7 @@
 
 <h2 class="blue-text text-lighten-3 center">Select Vehicle</h2> 
 <div class="collection">
-
-    this is a test
+    
 {% for vehicle in vehicles %}
     
     <a href="{{url_for('view_vehicle_details', vehicle_id=vehicle.id)}}" class="collection-item">{{vehicle.vehicle_reg}}</a>
