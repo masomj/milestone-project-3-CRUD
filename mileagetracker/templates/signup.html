@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content%}
+<h2 class="blue-text text-lighten-3 center">Sign Up</h2> 
+<div >
+    <form class=container method="POST" action="{{url_for('signup')}}">
+        {{form.csrf_token}}
+        {{form.username.label}}
+        {{form.username}}
+        {{form.email.label}}
+        {{form.email}}
+        {{form.password.label}}
+        {{form.password}}
+        
+        <div class="row">
+        <button class="center-align btn-large green col s3 ">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

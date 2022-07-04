@@ -1,16 +1,92 @@
 from turtle import Vec2D
 from flask import render_template, request, redirect, url_for
 from mileagetracker import app, db
-from mileagetracker.models import Vehicles, Mileage
+from mileagetracker.models import Vehicles, Mileage, User,Role,UserRoles
 from datetime import datetime
+from flask import Flask
+from flask_wtf import FlaskForm
+from flask import Flask
+from wtforms import StringField, PasswordField
+from wtforms.validators import InputRequired, Email, Length
+from werkzeug.security import generate_password_hash, check_password_hash
+import email_validator
+from flask_login import login_user,login_required,logout_user,current_user
+from flask_user import roles_required
+from flask_login import LoginManager
+
+
+login_manager=LoginManager()
+login_manager.init_app(app)
+login_manager.login_view='login'
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    
+    return User.query.get(int(user_id))
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(),Length(min=4,max=15)])
+    password = PasswordField('Password', validators=[InputRequired(),Length(min=4,max=256)])
+class RegisterForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(),Length(min=4,max=15)])
+    password = PasswordField('Password', validators=[InputRequired(),Length(min=4,max=256)])
+    email = StringField('Email', validators=[InputRequired(),Email(message='Invalid'),Length(max=50)])
+    
+
 
 @app.route("/")
+def index():
+    return redirect(url_for('login'))
+
+@app.route("/login", methods=["GET","POST"])
+def login():    
+    form = LoginForm()
+    
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()        
+        if user:
+            if check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect(url_for('home'))
+        return '<p> incorrect PW or username</p>'
+    return render_template("login.html", form=form)
+
+
+@app.route("/home")
+@login_required
 def home():
     vehicles = list(Vehicles.query.order_by(Vehicles.vehicle_reg).all())
     return render_template("select_vehicle.html",vehicles=vehicles)
 
 
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+    
+    
+@app.route("/signup", methods=["GET","POST"])
+def signup():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        hashed_pw = generate_password_hash(form.password.data, method='sha256')
+        new_user= User(
+            username=form.username.data,
+            email=form.email.data,
+            password=hashed_pw)
+        db.session.add(new_user)
+        db.session.commit()
+        return '<p>User added</p>'
+    return render_template("signup.html", form=form)
+
+
 @app.route("/add_mileage/<int:vehicle_id>", methods=["GET","POST"])
+@login_required
 def add_mileage(vehicle_id):
     vehicle=Vehicles.query.get_or_404(vehicle_id)
     mileage=list(Mileage.query.filter_by(vehicle_id=vehicle_id).first())
@@ -31,6 +107,7 @@ def add_mileage(vehicle_id):
 
 
 @app.route("/delete_mileage_record/<int:mileage_id>")
+@login_required
 def delete_mileage_record(mileage_id):
     record=Mileage.query.get_or_404(mileage_id)
     related_vehicle=record.vehicle_id
@@ -40,6 +117,7 @@ def delete_mileage_record(mileage_id):
 
 
 @app.route("/edit_mileage_record/<int:mileage_id>", methods=["POST","GET"])
+@login_required
 def edit_mileage_record(mileage_id):
     mileage= Mileage.query.get_or_404(mileage_id)
     vehicle= Vehicles.query.get_or_404(mileage.vehicle_id)
@@ -56,6 +134,7 @@ def edit_mileage_record(mileage_id):
 
     
 @app.route("/view_vehicle_details/<int:vehicle_id>")
+@login_required
 def view_vehicle_details(vehicle_id):
     selected_vehicle = Vehicles.query.get_or_404(vehicle_id)
     mileage_records = list(Mileage.query.filter_by(vehicle_id = vehicle_id).all())
@@ -63,35 +142,40 @@ def view_vehicle_details(vehicle_id):
 
 
 @app.route("/admin_console")   
+@login_required
 def admin_console():
     return render_template("admin_console.html")
 
 
 @app.route("/add_vehicle", methods=["POST","GET"])
+@login_required
 def add_vehicle():
     if request.method=="POST":
         new_vehicle=Vehicles(vehicle_reg=request.form.get("vehicle_reg"))
         db.session.add(new_vehicle)
         db.session.commit()
         return redirect(url_for("home"))
-    return render_template("edit_vehicle.html")
+    return render_template("add_vehicle.html")
 
 
 @app.route("/view_vehicle_details_admin")
+@login_required
 def view_vehicle_details_admin():
     vehicles = list(Vehicles.query.order_by(Vehicles.vehicle_reg).all())
     return render_template("view_vehicle_details_admin.html",vehicles=vehicles)
 
 
 @app.route("/edit_vehicle/<int:vehicle_id>", methods=["POST","GET"])
+@login_required
 def edit_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     if request.method=="POST":
-        selected_vehicle.vehicle_reg = request.form.get("vehicle_reg")
+        vehicle.vehicle_reg = request.form.get("vehicle_reg")
     return render_template("edit_vehicle.html",vehicle=vehicle)
 
 
 @app.route("/delete_vehicle/<int:vehicle_id>")
+@login_required
 def delete_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     db.session.delete(vehicle)

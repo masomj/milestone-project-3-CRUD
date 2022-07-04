@@ -18,6 +18,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] ="postgresql://{username}:{password}@local
 
 db = SQLAlchemy(app)
 
+
+
 from mileagetracker import routes 
 
 
