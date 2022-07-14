@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block content%}
 <h2 class="blue-text text-lighten-3 center">Login</h2> 
-<div class="collection col">
-    <form class="collection-item" method="POST" action="{{url_for('login')}}">
-        {{form.csrf_token}}
-        {{form.username.label}}
-        {{form.username}}
-        {{form.password.label}}
-        {{form.password}}
-        
-        <div class="row col s3 center-align">
-            <button class="btn-large green ">Submit</button>
-        </div>
-        
-    </form>
+<div class="row collection">
+    <div class="collection-item col s12 m8  offset-m2 center-align">
+        <form  method="POST" action="{{url_for('login')}}">
+            {{form.csrf_token}}
+            {{form.username.label}}
+            {{form.username}}
+            {{form.password.label}}
+            {{form.password}}
+            <button class="btn-large green center-align">Submit</button>
+           
+            
+        </form>
+    </div>
 </div>
 
 {% endblock %}
