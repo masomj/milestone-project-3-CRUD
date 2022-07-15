@@ -1,7 +1,8 @@
 from turtle import Vec2D
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for,flash
+from functools import wraps
 from mileagetracker import app, db
-from mileagetracker.models import Vehicles, Mileage, User,Role,UserRoles
+from mileagetracker.models import Vehicles, Mileage, User
 from datetime import datetime
 from flask import Flask
 from flask_wtf import FlaskForm
@@ -11,9 +12,7 @@ from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 import email_validator
 from flask_login import login_user,login_required,logout_user,current_user
-from flask_user import roles_required
 from flask_login import LoginManager
-
 
 login_manager=LoginManager()
 login_manager.init_app(app)
@@ -21,10 +20,8 @@ login_manager.login_view='login'
 
 
 @login_manager.user_loader
-def load_user(user_id):
-    
-    return User.query.get(int(user_id))
-
+def load_user(id):
+    return User.query.get(int(id))
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(),Length(min=4,max=15)])
@@ -34,6 +31,21 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired(),Length(min=4,max=256)])
     email = StringField('Email', validators=[InputRequired(),Email(message='Invalid'),Length(max=50)])
     
+user = User.query.filter_by(username="mason").first()     
+user.role = "admin"
+db.session.commit()
+
+
+def admin_required(func):
+    
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if current_user.role != "admin":
+            flash("You do not have access to this page. Please contact your Manager for any queries.","Warning")
+            return redirect(url_for("login"))
+        return func(*args, **kwargs)
+    return decorated_view
+            
 
 
 @app.route("/")
@@ -61,8 +73,6 @@ def home():
     return render_template("select_vehicle.html",vehicles=vehicles)
 
 
-
-
 @app.route("/logout")
 @login_required
 def logout():
@@ -79,6 +89,7 @@ def signup():
             username=form.username.data,
             email=form.email.data,
             password=hashed_pw)
+        
         db.session.add(new_user)
         db.session.commit()
         return '<p>User added</p>'
@@ -143,6 +154,7 @@ def view_vehicle_details(vehicle_id):
 
 @app.route("/admin_console")   
 @login_required
+@admin_required
 def admin_console():
     return render_template("admin_console.html")
 
