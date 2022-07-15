@@ -2,12 +2,10 @@ from flask import render_template, request, redirect, url_for,flash
 from functools import wraps
 from mileagetracker import app, db
 from mileagetracker.models import Vehicles, Mileage, User
-from datetime import datetime
+from mileagetracker.forms import LoginForm, RegisterForm
+from datetime import date
 from flask import Flask
-from flask_wtf import FlaskForm
 from flask import Flask
-from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 import email_validator
 from flask_login import login_user,login_required,logout_user,current_user
@@ -22,17 +20,8 @@ login_manager.login_view='login'
 def load_user(id):
     return User.query.get(int(id))
 
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[InputRequired(),Length(min=4,max=15)])
-    password = PasswordField('Password', validators=[InputRequired(),Length(min=4,max=256)])
-class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[InputRequired(),Length(min=4,max=15)])
-    password = PasswordField('Password', validators=[InputRequired(),Length(min=4,max=256)])
-    email = StringField('Email', validators=[InputRequired(),Email(message='Invalid'),Length(max=50)])
-    
 
 def admin_required(func):
-    
     @wraps(func)
     def decorated_view(*args, **kwargs):
         if current_user.role != "admin":
@@ -42,7 +31,6 @@ def admin_required(func):
     return decorated_view
             
 
-
 @app.route("/")
 def index():
     return redirect(url_for('login'))
@@ -50,7 +38,6 @@ def index():
 @app.route("/login", methods=["GET","POST"])
 def login():    
     form = LoginForm()
-    
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()        
         if user:
@@ -83,8 +70,9 @@ def signup():
         new_user= User(
             username=form.username.data,
             email=form.email.data,
-            password=hashed_pw)
-        
+            password=hashed_pw,
+            role=form.role.data
+            )
         db.session.add(new_user)
         db.session.commit()
         return '<p>User added</p>'
@@ -94,21 +82,41 @@ def signup():
 @app.route("/add_mileage/<int:vehicle_id>", methods=["GET","POST"])
 @login_required
 def add_mileage(vehicle_id):
+    today=date.today()
     vehicle=Vehicles.query.get_or_404(vehicle_id)
-    mileage=list(Mileage.query.filter_by(vehicle_id=vehicle_id).first())
-    if request.method == "POST":
-        mileage=Mileage(
-            start_time = request.form.get("start_time"),
-            start_mileage= request.form.get("start_mileage"),
-            start_destination= request.form.get("start_destination"),
-            end_destination= request.form.get("end_destination"),
-            end_mileage= request.form.get("end_mileage"),
-            end_time= request.form.get("end_time"),
-            vehicle_id = vehicle_id,
-            driver = "mason")
-        db.session.add(mileage)
-        db.session.commit()
-        return redirect(url_for("home"))
+    if Mileage.query.filter_by(vehicle_id=vehicle_id) != None:
+        mileages=list(Mileage.query.filter_by(vehicle_id=vehicle_id).all())
+        mileage=mileages[-1]
+        if request.method == "POST":
+            mileage=Mileage(
+                start_time = request.form.get("start_time"),
+                start_mileage= request.form.get("start_mileage"),
+                start_destination= request.form.get("start_destination"),
+                end_destination= request.form.get("end_destination"),
+                end_mileage= request.form.get("end_mileage"),
+                end_time= request.form.get("end_time"),
+                vehicle_id = vehicle_id,
+                driver = "mason",
+                date= today)
+            db.session.add(mileage)
+            db.session.commit()
+            return redirect(url_for("home"))  
+        return render_template("add_mileage.html",vehicle=vehicle, mileage=mileage)
+    else:    
+        if request.method == "POST":
+            mileage=Mileage(
+                start_time = request.form.get("start_time"),
+                start_mileage= request.form.get("start_mileage"),
+                start_destination= request.form.get("start_destination"),
+                end_destination= request.form.get("end_destination"),
+                end_mileage= request.form.get("end_mileage"),
+                end_time= request.form.get("end_time"),
+                vehicle_id = vehicle_id,
+                driver = "mason",
+                date=today)
+            db.session.add(mileage)
+            db.session.commit()
+            return redirect(url_for("home"))  
     return render_template("add_mileage.html",vehicle=vehicle)
 
 
