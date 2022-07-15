@@ -1,4 +1,3 @@
-from turtle import Vec2D
 from flask import render_template, request, redirect, url_for,flash
 from functools import wraps
 from mileagetracker import app, db
