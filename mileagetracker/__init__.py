@@ -18,7 +18,10 @@ if os.environ.get("DEVELOPMENT") == "True":
     pg_port = "5432"
     app.config["SQLALCHEMY_DATABASE_URI"] ="postgresql://{username}:{password}@localhost:{port}/mileagetracker".format(username=pg_user, password=pg_pwd, port=pg_port)
 else:
-    app.config["SQLALCHEMY_DATABSE_URI"] = os.environ.get("DATABASE_URL")
+    uri = os.environ.get("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://",1)
+    app.config["SQLALCHEMY_DATABSE_URI"] = uri
 
 db = SQLAlchemy(app)
 
