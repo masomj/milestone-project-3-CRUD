@@ -26,7 +26,6 @@ lazy-object-proxy==1.7.1
 Mako==1.2.1
 MarkupSafe==2.1.1
 mccabe==0.7.0
--e git+https://github.com/masomj/milestone-project-3-CRUD.git@206b4360acb576a59f3de47c8d3bb2c3655011f8#egg=mileagetracker
 passlib==1.7.4
 platformdirs==2.5.2
 postgres==4.0
