@@ -30,10 +30,6 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired(),Length(min=4,max=256)])
     email = StringField('Email', validators=[InputRequired(),Email(message='Invalid'),Length(max=50)])
     
-user = User.query.filter_by(username="mason").first()     
-user.role = "admin"
-db.session.commit()
-
 
 def admin_required(func):
     
