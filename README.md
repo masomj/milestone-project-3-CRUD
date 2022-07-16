@@ -142,7 +142,7 @@ The navigation menu will have links to the home page and the admin console. It w
 <details closed>
 <summary>Desktop Mobile</summary>
 
-![HomeMobile](assets/wireframes/homeMobile.png)
+![HomeMobile](assets/wireframes/HomeMobile.png)
 </details>
 
 <details closed>
