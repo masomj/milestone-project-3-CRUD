@@ -3,13 +3,11 @@
 1. [Overview](#Overview)
 2. [User Experience](<#UX-(UserExperience)>)
 
-- [User Stories](##UserStories)
-  - First Time Visitor Goals
-  - Returning Visitor Goals
-  - Developer Goals
-
-- [Structure](##Structure)
-- [Skeleton](##Skeleton)
+    - [User Stories](##UserStories)
+    - First Time Visitor Goals
+    - Returning Visitor Goals
+    - Developer Goals
+    
 - [Wireframes](##Wireframes)
 
 3. [Design](#Design)
@@ -125,14 +123,14 @@ Implementation
 
 - Alongside flask-login, I will create a decorator to ensure that the user trying to access the route has the admin role.
 
-## - Navigation
+## Navigation
 On initial loading, the login in screen will present itself
 
 The navigation menu will have links to the home page and the admin console. It will also have a log out link that when clicked, logs the user out and returns them to the login page
 
 
 
-## - Wireframes
+## Wireframes
 <details closed>
 <summary>Desktop Home</summary>
 
