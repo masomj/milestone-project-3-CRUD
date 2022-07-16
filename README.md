@@ -133,19 +133,41 @@ The navigation menu will have links to the home page and the admin console. It w
 
 
 ## - Wireframes
+<details open>
+<summary>Desktop Home</summary>
+<br>
+[!home](assets/wireframes/homedesktop.png)
+</details>
 
-**Home**
-![Home](assets/wireframes/homedesktop.png)
-**Mobile Home**
+<details open>
+<summary>Desktop Mobile</summary>
+<br>
 ![HomeMobile](assets/wireframes/homemobile.png)
-**Login**
+</details>
+
+<details open>
+<summary>Desktop Login</summary>
+<br>
 ![Login](assets/wireframes/logindesktop.png)
-**Mobile login**
+</details>
+
+<details open>
+<summary>Mobile Login</summary>
+<br>
 ![LoginMobile](assets/wireframes/loginmobile.png)
-**New Mileage Record**
+</details>
+
+<details open>
+<summary>Desktop New Mileage</summary>
+<br>
 ![NewMileage](assets/wireframes/newmileagedesktop.png)
-**New mileage Record Mobile**
+</details>
+
+<details open>
+<summary>Mobile New mileage</summary>
+<br>
 ![LoginMobile](assets/wireframes/newmileagemobile.png)
+</details>
 
 # Design
 
