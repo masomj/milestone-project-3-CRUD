@@ -1,20 +1,20 @@
 # Table of Contents
 
 1. [Overview](#Overview)
-2. [User Experience](<#UX-(UserExperience)>)
+2. [User Experience](#User Experience)
 
-    - [User Stories](##UserStories)
+    - [User Stories](#User Stories)
     - First Time Visitor Goals
     - Returning Visitor Goals
     - Developer Goals
-    
-- [Wireframes](##Wireframes)
+
+- [Wireframes](#Wireframes)
 
 3. [Design](#Design)
 
 4. [Features](#Features)
 
-5. [Languages Used](#LanguagesUsed)
+5. [Languages Used](#Languages)
 
 6. [Technologies](#Technologies)
 
@@ -29,7 +29,7 @@
 **Mileage Tracker** is a web application that wil be used to track the mileage of a work provided vehicle. There is a need for this in my current workplace, as currently paper based systems are still in use, which is tedious and time consuming. 
 # User Experience
 
-### User Stories
+# User Stories
 
 - As a user, I want to be able to record the trips I am taking in a given Vehicle
 - As a user, I want to be able to edit any of the previous trips I have taken incase of a typo
