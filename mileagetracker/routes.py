@@ -44,7 +44,8 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return redirect(url_for('home'))
-        return '<p> incorrect PW or username</p>'
+        else:
+            flash("Incorrect Username or Password","error")
     return render_template("login.html", form=form)
 
 
