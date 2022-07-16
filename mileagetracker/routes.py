@@ -67,16 +67,19 @@ def logout():
 def signup():
     form = RegisterForm()
     if form.validate_on_submit():
-        hashed_pw = generate_password_hash(form.password.data, method='sha256')
-        new_user= User(
-            username=form.username.data,
-            email=form.email.data,
-            password=hashed_pw,
-            role=form.role.data
-            )
-        db.session.add(new_user)
-        db.session.commit()
-        return '<p>User added</p>'
+        if form.password.data == form.validatepassword.data:
+            hashed_pw = generate_password_hash(form.password.data, method='sha256')
+            new_user= User(
+                username=form.username.data,
+                email=form.email.data,
+                password=hashed_pw,
+                role=form.role.data
+                )
+            db.session.add(new_user)
+            db.session.commit()
+            flash("New user added!")
+        elif form.password.data != form.validatepassword.data:
+            flash("Passwords do not match!","Error")
     return render_template("signup.html", form=form)
 
 
