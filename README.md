@@ -136,7 +136,7 @@ The navigation menu will have links to the home page and the admin console. It w
 <details closed>
 <summary>Desktop Home</summary>
 
-[!home](assets/wireframes/homeDesktop.png)
+![home](assets/wireframes/homeDesktop.png)
 </details>
 
 <details closed>
