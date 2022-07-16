@@ -3,7 +3,7 @@
 
 
 <h2 class="blue-text text-lighten-3">Add Mileage</h2> 
-{% if previous_mileage != None %}
+{% if mileage %}
     <div class="card-panel row grey lighten-5">
         <form class="row card-panel grey lighten-5" method="POST" action="{{ url_for('add_mileage', vehicle_id=vehicle.id) }}">
             <!-- start time -->

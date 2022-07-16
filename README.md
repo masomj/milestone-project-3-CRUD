@@ -8,21 +8,21 @@
     - Returning Visitor Goals
     - Developer Goals
 
-- [Wireframes](#Wireframes)
+3. [Wireframes](#Wireframes)
 
-3. [Design](#Design)
+4. [Design](#Design)
 
-4. [Features](#Features)
+5. [Features](#Features)
 
-5. [Languages Used](#Languages)
+6. [Languages Used](#Languages)
 
-6. [Technologies](#Technologies)
+7. [Technologies](#Technologies)
 
-7. [Testing](#Testing)
+8. [Testing](#Testing)
 
-8. [Deployment](#Deployment)
+9. [Deployment](#Deployment)
 
-9. [Credits](#Credits)
+10. [Credits](#Credits)
 
 # Overview
 
