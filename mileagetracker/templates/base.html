@@ -11,26 +11,39 @@
     <title>Mileage Tracker</title>
 </head>
 <body>
-    
+  
     <nav>
         <div class="nav-wrapper blue">
-          <a href="{{url_for('home')}}" class="brand-logo 1rem-left">Mileage Tracker</a>
+          <a href="{{url_for('home')}}" style="font-size:4vw" class=" brand-logo 1rem-left">Mileage Tracker</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
           <ul class="right hide-on-med-and-down">
             
             <li><a href="{{url_for('home')}}">Select Vehicle</a></li>
+            {%if admin %}
             <li><a href="{{url_for('admin_console')}}">Admin Console</a></li>
+            {% endif %}
+            {% if loggedin %}
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>
     
-      <ul class="sidenav" id="mobile-demo">
+      <ul class="sidenav" id="mobile-demo"> 
         <li><a href="{{url_for('home')}}">Select Vehicle</a></li>
         <li><a href="{{url_for('admin_console')}}">Admin Console</a></li>
       </ul>
       
     <main class="container">
-        
+      {% with messages = get_flashed_messages() %}  
+        {% if messages %}  
+          {% for message in messages %}  
+              <div class="row"></div>
+                <p class="col s8 center-align">{{ message }}</p>  
+              </div>
+          {% endfor %}  
+        {% endif %}  
+      {% endwith %} 
         {% block content %}
 
         {% endblock %}
