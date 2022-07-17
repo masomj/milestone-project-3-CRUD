@@ -7,10 +7,10 @@
 <div class="collection">
     {% for vehicle in vehicles %}
         <div class="collection-item row">
-        <a href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}" class="col s3 m6 collection-item">{{vehicle.vehicle_reg}}</a>
+        <a href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}" class="col s3 collection-item"> <button class="btn blue darken-2 white-text ">{{vehicle.vehicle_reg}}</button></a>
         
-        <a class="right-align col" href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}"><button class="btn-small green">Edit Registration</button></a>
-        <a class="modal-trigger right-align col" href="#modal2"><button class="btn-small red">Delete</button></a>
+        <a class="col s3 m2 offset-m5 offset-s2" href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}"><button class="btn-small green">Edit</button></a>
+        <a class="modal-trigger col s2 m2"  href="#modal2"><button class="btn-small red">Delete</button></a>
         <div id="modal2" class="modal">
             <div class="modal-content">
             <h4>Delete record?</h4>
