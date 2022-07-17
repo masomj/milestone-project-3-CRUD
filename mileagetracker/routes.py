@@ -88,7 +88,7 @@ def signup():
 def add_mileage(vehicle_id):
     today=date.today()
     vehicle=Vehicles.query.get_or_404(vehicle_id)
-    if Mileage.query.filter_by(vehicle_id=vehicle_id).count() >0 :
+    if Mileage.query.filter_by(vehicle_id=vehicle_id).count() > 0 :
         mileages=list(Mileage.query.filter_by(vehicle_id=vehicle_id).all())
         mileage=mileages[-1]
         if request.method == "POST":
