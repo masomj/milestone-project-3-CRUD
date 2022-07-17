@@ -193,6 +193,7 @@ def edit_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     if request.method=="POST":
         vehicle.vehicle_reg = request.form.get("vehicle_reg")
+        return redirect(url_for('view_vehicle_details_admin'))
     return render_template("edit_vehicle.html",vehicle=vehicle)
 
 

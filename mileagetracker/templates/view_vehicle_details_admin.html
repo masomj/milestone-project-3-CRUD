@@ -9,7 +9,7 @@
         <div class="collection-item row">
         <a href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}" class="col s3 m6 collection-item">{{vehicle.vehicle_reg}}</a>
         
-        <a class="modal-trigger right-align col" href="url_for('edit_vehicle', vehicle_id=vehicle.id)"><button class="btn-small green">Edit Registration</button></a>
+        <a class="right-align col" href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}"><button class="btn-small green">Edit Registration</button></a>
         <a class="modal-trigger right-align col" href="#modal2"><button class="btn-small red">Delete</button></a>
         <div id="modal2" class="modal">
             <div class="modal-content">
