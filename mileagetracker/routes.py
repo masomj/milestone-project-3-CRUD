@@ -168,6 +168,7 @@ def admin_console():
 
 @app.route("/add_vehicle", methods=["POST","GET"])
 @login_required
+@admin_required
 def add_vehicle():
     if request.method=="POST":
         new_vehicle=Vehicles(vehicle_reg=request.form.get("vehicle_reg"))
@@ -179,6 +180,7 @@ def add_vehicle():
 
 @app.route("/view_vehicle_details_admin")
 @login_required
+@admin_required
 def view_vehicle_details_admin():
     vehicles = list(Vehicles.query.order_by(Vehicles.vehicle_reg).all())
     return render_template("view_vehicle_details_admin.html",vehicles=vehicles)
@@ -186,6 +188,7 @@ def view_vehicle_details_admin():
 
 @app.route("/edit_vehicle/<int:vehicle_id>", methods=["POST","GET"])
 @login_required
+@admin_required
 def edit_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     if request.method=="POST":
@@ -195,6 +198,7 @@ def edit_vehicle(vehicle_id):
 
 @app.route("/delete_vehicle/<int:vehicle_id>")
 @login_required
+@admin_required
 def delete_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     db.session.delete(vehicle)

@@ -3,11 +3,14 @@
 
 
 <h2 class="blue-text text-lighten-3 center">Select Vehicle</h2> 
-<div class="collection">
+<div class="collection row">
     
 {% for vehicle in vehicles %}
+    <div class="col s12 m8 offset-m2 collection-item center-align"><a href="{{url_for('view_vehicle_details', vehicle_id=vehicle.id)}}">
+        <button class="btn-small">{{vehicle.vehicle_reg}}</button></a>
+    </div>
     
-    <a href="{{url_for('view_vehicle_details', vehicle_id=vehicle.id)}}" class="collection-item">{{vehicle.vehicle_reg}}</a>
+    
 {% endfor %}
 </div>
 {% endblock %}
