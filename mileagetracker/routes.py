@@ -100,7 +100,7 @@ def add_mileage(vehicle_id):
                 end_mileage= request.form.get("end_mileage"),
                 end_time= request.form.get("end_time"),
                 vehicle_id = vehicle_id,
-                driver = "mason",
+                driver = current_user.username,
                 date= today)
             db.session.add(mileage)
             db.session.commit()
@@ -116,7 +116,7 @@ def add_mileage(vehicle_id):
                 end_mileage= request.form.get("end_mileage"),
                 end_time= request.form.get("end_time"),
                 vehicle_id = vehicle_id,
-                driver = "mason",
+                driver = current_user.username,
                 date=today)
             db.session.add(mileage)
             db.session.commit()
