@@ -4,11 +4,23 @@
 
 <h2 class="blue-text text-lighten-3 center">Select Vehicle</h2> 
 
-<div class="collection">
+<div class="collection row">
     {% for vehicle in vehicles %}
-        <div class="collection-item row ">
+        <div class="collection-item col s12  ">
         <a href="{{url_for('edit_vehicle', vehicle_id=vehicle.id)}}" class="col s3 m6 collection-item">{{vehicle.vehicle_reg}}</a>
-        <a href="{{url_for('delete_vehicle',vehicle_id=vehicle.id)}}" class="right-align col s3 m6"><button class="btn-small red ">Delete Vehicle</button></a>
+        
+        <a class="modal-trigger right-align col" href="url_for('edit_vehicle', vehicle_id=vehicle.id)"><button class="btn-small green">Edit Registration</button></a>
+        <a class="modal-trigger right-align col" href="#modal2"><button class="btn-small red">Delete</button></a>
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+            <h4>Delete record?</h4>
+            <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+            <a href="{{ url_for('edit_vehicle', vehicle_id=vehicle.id) }}" class=" modal-action modal-close waves-effect waves-green btn-flat">Delete!</a>
+            </div>
+        </div>
+
         </div>
     {% endfor %}
 
