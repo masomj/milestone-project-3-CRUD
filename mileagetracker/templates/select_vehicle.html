@@ -7,9 +7,8 @@
     
 {% for vehicle in vehicles %}
     <div class="col s12 m8 offset-m2 collection-item center-align"><a href="{{url_for('view_vehicle_details', vehicle_id=vehicle.id)}}">
-        <button class="btn-small">{{vehicle.vehicle_reg}}</button></a>
+        <button class="btn blue col s4 offset-s4" >{{vehicle.vehicle_reg}}</button></a>
     </div>
-    
     
 {% endfor %}
 </div>
