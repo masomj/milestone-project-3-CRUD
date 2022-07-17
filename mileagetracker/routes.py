@@ -104,7 +104,7 @@ def add_mileage(vehicle_id):
                 date= today)
             db.session.add(mileage)
             db.session.commit()
-            return redirect(url_for("home"))  
+            return redirect(url_for("view_vehicle_details",vehicle_id = mileage.vehicle_id))  
         return render_template("add_mileage.html",vehicle=vehicle, mileage=mileage)
     else:    
         if request.method == "POST":
@@ -120,7 +120,7 @@ def add_mileage(vehicle_id):
                 date=today)
             db.session.add(mileage)
             db.session.commit()
-            return redirect(url_for("home"))  
+            return redirect(url_for("view_vehicle_details",vehicle_id = mileage.vehicle_id))  
     return render_template("add_mileage.html",vehicle=vehicle)
 
 
@@ -198,7 +198,7 @@ def edit_vehicle(vehicle_id):
 
 @app.route("/delete_vehicle/<int:vehicle_id>")
 @login_required
-@admin_required
+
 def delete_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     db.session.delete(vehicle)
