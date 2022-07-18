@@ -2,18 +2,17 @@
 {% block content %}
 
 
-<h2 class="blue-text text-lighten-3 center">{{vehicle.vehicle_reg}}</h2> 
-
-
-
+<h2 class="blue-text text-lighten-3 center">{{vehicle.vehicle_reg}}</h2>
+<p class="center">Select a record to view more information</p>
 <ul class="collapsible">
-{% for record in mileage %}
-   <li> 
-    <div class="collapsible-header row">       
-        <p><i class="fas fa-caret-down"></i><strong>{{record.start_destination}}</strong> to <strong>{{ record.end_destination }}</strong></p>
+    {% for record in mileage %}
+    <li>
+        <div class="collapsible-header row">
+            <p><i class="fas fa-caret-down"></i><strong>{{record.start_destination}}</strong> to
+                <strong>{{ record.end_destination }}</strong></p>
         </div>
 
-    </div>
+        </div>
         <div class="collapsible-body">
             <div class="row">
                 <div class="col s4">
@@ -28,8 +27,8 @@
                     <strong>Start Mileage:</strong>
                     <p>{{ record.start_mileage}}</p>
                 </div>
-            </div> 
-            
+            </div>
+
             <div class="row">
                 <div class="col s4">
                     <strong>End Destination:</strong>
@@ -57,8 +56,11 @@
                 </div>
                 <div class="row">
                     <div class="">
-                        <a class="col s4 m2 offset-m6 offset-s3" href="{{ url_for('edit_mileage_record', mileage_id=record.id) }}"><button class="btn-small green">Edit</button></a>
-                        <a class="modal-trigger col s1 m1" href="#modal1"><button class="btn-small red">Delete</button></a>
+                        <a class="col s4 m2 offset-m6 offset-s3"
+                            href="{{ url_for('edit_mileage_record', mileage_id=record.id) }}"><button
+                                class="btn-small green">Edit</button></a>
+                        <a class="modal-trigger col s1 m1" href="#modal1"><button
+                                class="btn-small red">Delete</button></a>
                         <!-- Modal Structure -->
                         <div id="modal1" class="modal">
                             <div class="modal-content">
@@ -66,19 +68,21 @@
                                 <p>Are you sure you want to delete?</p>
                             </div>
                             <div class="modal-footer col s2">
-                                <a href="{{ url_for('delete_mileage_record', mileage_id=record.id) }}" class="modal-action modal-close waves-effect waves-green btn-small">Delete!</a>
+                                <a href="{{ url_for('delete_mileage_record', mileage_id=record.id) }}"
+                                    class="modal-action modal-close waves-effect waves-green btn-small">Delete!</a>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
     </li>
-    
-{% endfor %}
+
+    {% endfor %}
 </ul>
 <div class="col s12 center">
-    <a href="{{ url_for('add_mileage',vehicle_id=vehicle.id) }}"class="btn green"><i class="fa-solid fa-plus"></i> New Mileage Record</a>
-    
+    <a href="{{ url_for('add_mileage',vehicle_id=vehicle.id) }}" class="btn green"><i class="fa-solid fa-plus"></i> New
+        Mileage Record</a>
+
 </div>
 
 {% endblock %}

@@ -2,18 +2,18 @@
 {% block content %}
 
 
-<h2 class="blue-text text-lighten-3 center">Add</h2> 
+<h2 class="blue-text text-lighten-3 center">Add Vehicle</h2>
 <div class="collection">
     <form action="{{url_for('add_vehicle')}}" method="POST">
-    <div class="row">
-        <div class="input-field col s12">
-            <input type="text" id="vehicle_reg" name="vehicle_reg" class="validate" required maxlength="7"> 
-            <label for="vehicle_reg">Vehicle Registration number</label>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" id="vehicle_reg" name="vehicle_reg" class="validate" required maxlength="7">
+                <label for="vehicle_reg">Vehicle Registration number</label>
+            </div>
         </div>
-    </div>
-    <div class="col s12 center-align">
-        <button type="submit" class="btn-large green">Submit</button>
-    </div>
+        <div class="col s12 center-align">
+            <button type="submit" class="btn-large green">Submit</button>
+        </div>
     </form>
 </div>
 {% endblock %}

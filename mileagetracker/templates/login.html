@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content%}
-<h2 class="blue-text text-lighten-3 center">Login</h2> 
+<h2 class="blue-text text-lighten-3 center">Login</h2>
 <div class="row collection">
     <div class="collection-item col s12 m8  offset-m2 center-align">
-        <form  method="POST" action="{{url_for('login')}}">
+        <form method="POST" action="{{url_for('login')}}">
             {{form.csrf_token}}
             {{form.username.label}}
             {{form.username(class="grey lighten-4") }}
@@ -11,8 +11,8 @@
             {{form.password(class="grey lighten-4") }}
             <a class="row" href="{{url_for('signup')}}">Create an account?</a>
             <button class="btn-large green center-align">Submit</button>
-            
-            
+
+
         </form>
     </div>
 </div>
