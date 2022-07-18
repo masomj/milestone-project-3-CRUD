@@ -3,8 +3,6 @@
 <h2 class="blue-text text-lighten-3 center">Sign Up</h2> 
 <div class="row collection" >
     <form class="collection-item col s12 m8 offset-m2" method="POST" action="{{url_for('signup')}}">
-
-
         {{  form.csrf_token  }}
         {{  form.username.label  }}
         {{  form.username(class="grey lighten-4")  }}
@@ -18,9 +16,6 @@
             {{  form.role.label  }}
             {{  form.role(class="btn-small grey lighten-4 black-text ")  }}
         {% endif %}
-        
-       
-        
         <div class="row">
             <br>
         <button class=" collection-item col s12 m8 offset-m2 center-align btn-large green">Submit</button>

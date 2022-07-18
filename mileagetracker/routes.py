@@ -208,14 +208,13 @@ def edit_vehicle(vehicle_id):
 
 @app.route("/delete_vehicle/<int:vehicle_id>")
 @login_required
-
 def delete_vehicle(vehicle_id):
     vehicle = Vehicles.query.get_or_404(vehicle_id)
     db.session.delete(vehicle)
     db.session.commit()
     return redirect(url_for('admin_console'))
     
-    
+
 
     
     
