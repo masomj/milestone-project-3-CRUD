@@ -1,5 +1,3 @@
-from msilib.schema import _Validation_records
-from xmlrpc.client import Boolean
 from flask_wtf import FlaskForm
 from flask import Flask
 from flask_wtf import FlaskForm
