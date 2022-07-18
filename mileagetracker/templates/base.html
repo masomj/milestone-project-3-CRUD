@@ -18,25 +18,42 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
           <ul class="right hide-on-med-and-down">
             
-            <li><a href="{{url_for('home')}}">Select Vehicle</a></li>
-            {%if current_user.role=='admin' %}
-            <li><a href="{{url_for('admin_console')}}">Admin Console</a></li>
-            {% endif %}
+            
+            
             {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('logout')}}">Logout</a></li>
+              <li><a href="{{url_for('home')}}">Select Vehicle</a></li>
+              {%if current_user.role=='admin' %}
+                <li><a href="{{url_for('admin_console')}}">Admin Console</a></li>
+              {% endif %}
+              <li><a href="{{url_for('logout')}}">Logout</a></li>
             {% endif %}
+
+            {% if current_user.is_anonymous %}
+            <li><a href="{{url_for('signup')}}">Sign in</a></li>
+            {% endif %}
+            {% if current_user.is_anonymous %}
+            <li><a href="{{url_for('login')}}">Sign Up</a></li>
+            {% endif %}
+
           </ul>
         </div>
       </nav>
     
       <ul class="sidenav" id="mobile-demo"> 
-        <li><a href="{{url_for('home')}}">Select Vehicle</a></li>
-        {%if current_user.role=='admin' %}
-            <li><a href="{{url_for('admin_console')}}">Admin Console</a></li>
-            {% endif %}
         {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('logout')}}">Logout</a></li>
+              <li><a href="{{url_for('home')}}">Select Vehicle</a></li>
+              {%if current_user.role=='admin' %}
+                <li><a href="{{url_for('admin_console')}}">Admin Console</a></li>
+              {% endif %}
+              <li><a href="{{url_for('logout')}}">Logout</a></l>
             {% endif %}
+            {% if current_user.is_anonymous %}
+            <li><a href="{{url_for('signup')}}">Sign in</a></li>
+            {% endif %}
+            {% if current_user.is_anonymous %}
+            <li><a href="{{url_for('login')}}">Sign Up</a></li>
+            {% endif %}
+
       </ul>
       
     <main class="container">
