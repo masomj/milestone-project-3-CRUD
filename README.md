@@ -348,7 +348,7 @@ pip3 freeze --local > requirements.txt
 - Click Open App in Heroku to launch the App in a new browser window.
 
 **Successful deployment**
-![Heroku deployment](https://milestone3-mileage-tracker.herokuapp.com/login)
+[Heroku deployment](https://milestone3-mileage-tracker.herokuapp.com/login)
 # Credits
 
 - Task Manager Tutorial
