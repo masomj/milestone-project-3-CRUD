@@ -258,7 +258,7 @@ Heroku is a platform as a service (PaaS) application that provides developers wi
 
 # Testing
 
-CERATE TESTING DOC and link here
+- The full testing document can be found here [Testing](/testing.md)
 
 # Deployment
 #### Creation of a Python Virtual Environment ####
