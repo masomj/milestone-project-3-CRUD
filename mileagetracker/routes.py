@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for,flash
+from flask import render_template, request, redirect, url_for, flash
 from functools import wraps
 from mileagetracker import app, db
 from mileagetracker.models import Vehicles, Mileage, User
@@ -8,12 +8,12 @@ from flask import Flask
 from flask import Flask
 from werkzeug.security import generate_password_hash, check_password_hash
 import email_validator
-from flask_login import login_user,login_required,logout_user,current_user
+from flask_login import login_user, login_required, logout_user, current_user
 from flask_login import LoginManager
 
-login_manager=LoginManager()
+login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view='login'
+login_manager.login_view = 'login'
 
 
 @login_manager.user_loader
@@ -25,7 +25,9 @@ def admin_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
         if current_user.role != "admin":
-            flash("You do not have access to this page. Please contact your Manager for any queries.","Warning")
+            flash(
+                "You do not have access to this page. Please contact your Manager for any queries.",
+                "Warning")
             return redirect(url_for("login"))
         return func(*args, **kwargs)
     return decorated_view
@@ -44,8 +46,10 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return redirect(url_for('home'))
+            else:
+                flash("Incorrect Password","Error")
         else:
-            flash("Incorrect Username or Password","error")
+            flash("Incorrect Username","Error")        
     return render_template("login.html", form=form)
 
 
@@ -65,30 +69,35 @@ def logout():
     
 @app.route("/signup", methods=["GET","POST"])
 def signup():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        if form.password.data == form.validatepassword.data:
-            hashed_pw = generate_password_hash(form.password.data, method='sha256')
-            if current_user.role =='admin':
-               new_user= User(
-                    username=form.username.data,
-                    email=form.email.data,
-                    password=hashed_pw,
-                    role="User",
-                    )                
-            else:
+    if request.method =="POST":
+        if request.form.get("password") == request.form.get("confirm"):
+            hashed_pw = generate_password_hash(request.form.get("password"),method='sha256')
+            if current_user.is_authenticated:
                 new_user= User(
-                    username=form.username.data,
-                    email=form.email.data,
-                    password=hashed_pw,
-                    role=form.role.data,
-                    )
+                    username = request.form.get("username"),
+                    email = request.form.get("email"),
+                    password = hashed_pw,
+                    role = request.form.get('roles')
+                )
                 db.session.add(new_user)
                 db.session.commit()
-                flash("New user added!")
-        elif form.password.data != form.validatepassword.data:
-            flash("Passwords do not match!","Error")
-    return render_template("signup.html", form=form)
+                return redirect(url_for("login"))
+            else:
+                new_user= User(
+                    username = request.form.get("username"),
+                    email = request.form.get("email"),
+                    password = hashed_pw,
+                    role = "user"
+                )
+                print(new_user)
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for("login"))
+        elif request.form.get("password") != request.form.get("confirm"):
+            flash("Password don't match","Error")
+        
+               
+    return render_template("signup.html")
 
 
 @app.route("/add_mileage/<int:vehicle_id>", methods=["GET","POST"])

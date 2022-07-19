@@ -3,24 +3,27 @@
 <h2 class="blue-text text-lighten-3 center">Sign Up</h2>
 <div class="row collection">
     <form class="collection-item col s12 m8 offset-m2" method="POST" action="{{url_for('signup')}}">
-        {{  form.csrf_token  }}
-        {{  form.username.label  }}
-        {{  form.username(class="grey lighten-4")  }}
-        {{  form.email.label  }}
-        {{  form.email(class="grey lighten-4")  }}
-        {{  form.password.label  }}
-        {{  form.password(class="grey lighten-4") }}
-        {{  form.validatepassword.label  }}
-        {{  form.validatepassword(class="grey lighten-4")  }}
+        <label for="username">Username</label>
+        <input id="username" required name="username" class="grey lighten-4  validate" type="text">
+        <label for="email">Email</label>
+        <input id="email" required name="email" class="grey lighten-4 validate" type="email">
+        <label for="password">Password</label>
+        <input id="password"  required name="password"class="grey lighten-4 validate"type="Password">
+        <label for="confirm">Confirm Password</label>
+        <input id="confirm" required name="confirm" class="grey lighten-4 validate" type="Password">
         {%if current_user.role=='admin' %}
-        {{  form.role.label  }}
-        {{  form.role(class="btn-small grey lighten-4 black-text ")  }}
+            <label for="roles">Role</label>
+            <select required class="btn-small grey lighten-4 black-text"name="roles" id="roles">
+                <option value="admin">Admin</option>
+                <option value="user">Standard User</option>
+            </select>
         {% endif %}
         <div class="row">
             <br>
             <button class=" collection-item col s12 m8 offset-m2 center-align btn-large green">Submit</button>
         </div>
 
+        
     </form>
 </div>
 {% endblock %}
