@@ -178,7 +178,7 @@ I've chosen two main colours, to keep the theme simple and consistent. Blue and 
 I will use the standard font for this app, as it is a utilitarian app, not made to look amazing and slow down browsers
 ### Imagery
 
-In keeping with the minimalistic theme, there is no imagery throughout the app
+In keeping with the minimilistic theme, there is no imagery throughout the app
 ### Back-end design
 
 - The app is created using Python3 and a Flask framework to render the HTML pages.
@@ -188,16 +188,16 @@ In keeping with the minimalistic theme, there is no imagery throughout the app
 - The mileage records, user profiles and different vehicles are stored and served using a postgres database.
 ### Front-end design
 
-- The front end is kept simple and light. Using a card method to display differnt mileage records, which can be expanded to further view the details when clicked on
+- The front end is kept simple and light. Using a card method to display different mileage records, which can be expanded to further view the details when clicked on
 - The vehicle selection page is also simple, it just lists each registered vehicle as a button, clicking it will take you to the page where you can view the mileage records or enter a new one
-- The admin console conists of square cards that are also links to take you to the page to render the desired functionality
+- The admin console consists of square cards that are also links to take you to the page to render the desired functionality
 # Features
 
 ### Main Features
 
--	Responsiveness – The site is fully responsive to all screen sizes. This was acheived by using the materalize CSS framework and using this with a mobile first approach. As this is app will primarily be a mobile app, it was import to ensure this functionality worked. 
+-	Responsiveness – The site is fully responsive to all screen sizes. This was achieved by using the materialize CSS framework and using this with a mobile first approach. As this is app will primarily be a mobile app, it was import to ensure this functionality worked. 
 
--	Navbar  – The navbar was also implemented using materilize CSS. This is because it makes the creation of a mobile navigation menu painless and easy. The nav bar doesn't consist of many links, as the main navigation takes place via form and button functionality on the pages.
+-	Navbar  – The navbar was also implemented using materialize CSS. This is because it makes the creation of a mobile navigation menu painless and easy. The nav bar doesn't consist of many links, as the main navigation takes place via form and button functionality on the pages.
 
 -	Flash messages – I have used flash messages to inform users about events such as creating accounts, logging out, unauthorized access to restricted pages etc. 
 ### Home Page
@@ -206,7 +206,16 @@ In keeping with the minimalistic theme, there is no imagery throughout the app
 
 -	On this page, the last 10 mileage records are shown in a card format, allowing the user to view, edit or delete them. Each card is expandable to show all the data for that record. 
 -   Underneath all the records, there is a button to add a new entry that takes you to a form page, where you enter the relevant details and then press enter. 
--	Forms – The forms on these pages are clear and concise, and responsive across all screen sizes. 
+-	Forms 
+  – The forms on these pages are clear and concise, and responsive across all screen sizes. 
+
+## Future Features
+### User accounts 
+- At this time, there is no functionality surrounding password resets. This is because implementing this requires use of an email address and is beyond the scope required for this project. Before it is implemented, this will be resolved
+- Restriction of creation of new accounts to administrators. Again, this out of scope of the project requirements, but this will implemented before it is used in my organisation
+- At this time, all users can see all vehicles and mileage records, this will be further refined before implementation
+### Data Managment
+- I will create a function to export records within a specified time period to a CSV for easier processing and querying by Admins of the site
 # Languages
 
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -342,6 +351,5 @@ pip3 freeze --local > requirements.txt
 ![Heroku deployment](https://milestone3-mileage-tracker.herokuapp.com/login)
 # Credits
 
-- **Code Institute**
-  - Task Manager Tutorial
+- Task Manager Tutorial
 - Flask documentation for flask-login implementation [docs](https://flask.palletsprojects.com/en/2.1.x/)
