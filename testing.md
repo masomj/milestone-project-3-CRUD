@@ -93,6 +93,6 @@ The website's main purpose is to record the mileage covered whilst driving a wor
 
 
 # Bugs
-    - The main bug surrounded not being able to register a new user. This occurred after I added the validation logic passwords. Originally, this form was implemented using WTForms, but I rewrote it in standard HTML and it now works as intended. The only WTForms page left is the login page, as this is the only one that works as intended
+- The main bug surrounded not being able to register a new user. This occurred after I added the validation logic passwords. Originally, this form was implemented using WTForms, but I rewrote it in standard HTML and it now works as intended. The only WTForms page left is the login page, as this is the only one that works as intended
 # Deployment
 - Heroku's postgres add-on doesn't provide the correct connection string, that was resoled by adding it into the string programatically in my __init__.py file
