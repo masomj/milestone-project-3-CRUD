@@ -27,6 +27,15 @@
 # Overview
 
 **Mileage Tracker** is a web application that wil be used to track the mileage of a work provided vehicle. There is a need for this in my current workplace, as currently paper based systems are still in use, which is tedious and time consuming. 
+
+# Test User credentials
+1. Admin:
+  - Username : Administrator
+  - Password : Password1
+2. Standard User:
+  - Username: User
+  - Password: Password1
+- Usernames ARE Case sensitive at this time
 # User Experience
 
 # User Stories
