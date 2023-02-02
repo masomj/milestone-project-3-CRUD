@@ -2,7 +2,7 @@
 
 1. [Overview](#Overview)
 
-2. [User Experience](#User Experience)
+2. [UserExperience](#User Experience)
 
 3. [Wireframes](#Wireframes)
 
@@ -11,8 +11,8 @@
 5. [Features](#Features)
 
 6. [Languages Used](#Languages)
-7. 
-8. [Technologies](#Technologies)
+
+7. [Technologies](#Technologies)
 
 8. [Testing](#Testing)
 
