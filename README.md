@@ -11,8 +11,8 @@
 5. [Features](#Features)
 
 6. [Languages Used](#Languages)
-
-7. [Technologies](#Technologies)
+7. 
+8. [Technologies](#Technologies)
 
 8. [Testing](#Testing)
 
@@ -22,7 +22,7 @@
 
 # Overview
 
-**Mileage Tracker** is a web application that wil be used to track the mileage of a work provided vehicle. There is a need for this in my current workplace, as currently paper based systems are still in use, which is tedious and time consuming. 
+**Mileage Tracker** is a web application that will be used to track the mileage of a work provided vehicle. There is a need for this in my current workplace, as currently paper based systems are still in use, which is tedious and time consuming. The design of the site has been kept simple and utilitarian as it will reduce distractions whilst using it
 
 # Test User credentials
 1. Admin:
@@ -32,6 +32,8 @@
   - Username: User
   - Password: Password1
 - Usernames ARE Case sensitive at this time
+
+Deployed link : https://milestone3-mileage-tracker.herokuapp.com/
 # User Experience
 
 # User Stories
