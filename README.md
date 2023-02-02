@@ -1,12 +1,8 @@
 # Table of Contents
 
 1. [Overview](#Overview)
-2. [User Experience](#User Experience)
 
-    - [User Stories](#User Stories)
-    - First Time Visitor Goals
-    - Returning Visitor Goals
-    - Developer Goals
+2. [User Experience](#User Experience)
 
 3. [Wireframes](#Wireframes)
 
