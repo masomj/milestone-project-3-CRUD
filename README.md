@@ -2,7 +2,7 @@
 
 1. [Overview](#Overview)
 
-2. [UserExperience](#User Experience)
+2. [User Experience](#User Experience)
 
 3. [Wireframes](#Wireframes)
 
