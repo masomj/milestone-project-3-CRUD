@@ -2,7 +2,7 @@
 
 1. [Overview](#Overview)
 
-2. [UserExperience](#User Experience)
+2. [UserExperience](#UserExperience)
 
 3. [Wireframes](#Wireframes)
 
@@ -26,7 +26,7 @@
 
 # Test User credentials
 1. Admin:
-  - Username : Administrator
+  - Username : Admin
   - Password : Password1
 2. Standard User:
   - Username: User
